@@ -2,7 +2,7 @@
 class Database
 {
     private $host = "localhost";
-    private $database_name = "db_mcd";
+    private $database_name = "db_antrianmcd";
     private $username = "root";
     private $password = "";
     public $conn;
