@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -14,25 +15,25 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
     <title>Data Antrian MCD</title>
 </head>
 
 <body>
   
-<nav class="navbar navbar-dark fixed-top"style="background-color:#C31F26">
+<nav class="navbar "style="background-color:#D53032">
   <div class="container-fluid">
        <a class="navbar-brand">
-         <img src="http://localhost/AntrianMCD/img/mcd.jpg" width="90"></a>
+         <img src="http://localhost/AntrianMCD/img/mcd2.gif" width="100"></a>
     <button class="navbar-toggler text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-start text-light" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"style="background-color:#FDCE04">
+    <div class="offcanvas offcanvas-start text-light" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"style="background-color:#fdc210">
     <div class="offcanvas-header">
 
                  <span class="border-bottom"> 
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="http://localhost/AntrianMCD/img/mcd.jpg" width="50">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="http://localhost/AntrianMCD/img/Nav.png" width="100" data-aos="flip-left" data-aos-duration="2000">
      <p class="text-danger">Selamat datang...</p>
     </h5> </span>
 
@@ -45,6 +46,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link text-danger" aria-current="page" href="#"><i class="bi bi-clipboard-data-fill"></i> Data Antrian</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-danger" aria-current="page" href="#"><i class="bi bi-thermometer-snow"></i> Suhu Ac</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-danger" href="http://localhost/AntrianMCD/view/antrianmcd/index.php"><i class="bi bi-arrow-left-circle-fill"></i> Logout</a>
@@ -85,9 +89,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Waktu Kedatangan</th>
-                                <th>Selisih Kedatangan (menit)</th>
+                                <th>Selisih Kedatangan</th>
                                 <th>Waktu Awal Pelayanan</th>
-                                <th>Selisih Pelayanan Kasir(menit)</th>
+                                <th>Selisih Pelayanan Kasir</th>
                                 <th>Waktu Selesai</th>
                                 <th>Selisih Keluar Antrian (menit)</th>
                                 <th>Action</th>
@@ -110,14 +114,14 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Waktu Kedatangan</label>
-                            <input type="time" name="waktudatang" id="waktudatang" class="form-control" />
+                            <input type="time" name="w_datang" id="w_datang" class="form-control" />
                             <span id="waktu_kedatangan_error" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Selisih Kedatangan</label>
-                            <input type="text" name="selisihkedatangan" id="selisihkedatangan" class="form-control" />
-                            <span id="selisihkedatangan" class="text-danger"></span>
+                            <input type="text" name="s_kedatangan" id="s_kedatangan" class="form-control" />
+                            <span id="s_kedatangan" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Waktu Awal Pelayanan</label>
@@ -125,8 +129,8 @@
                             <span id="waktu_awal_pelayanan_error" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Selisih_Pelayanan_Kasir</label>
-                            <input type="text" name="selisihpelayanankasir" id="selisihpelayanankasir" class="form-control" />
+                            <label class="form-label">Selisih Pelayanan Kasir</label>
+                            <input type="text" name="s_pelayanankasir" id="s_pelayanankasir" class="form-control" />
                             <span id="selisih_pelayanan_kasir_error" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
@@ -136,7 +140,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Selisih Keluar Antrian</label>
-                            <input type="text" name="selisihkeluarantrian" id="selisihkeluarantrian" class="form-control" />
+                            <input type="text" name="s_keluarantrian" id="s_keluarantrian" class="form-control" />
                             <span id="selisih_keluar_antrian_error" class="text-danger"></span>
                         </div>
 
@@ -161,15 +165,15 @@
                 </div>
 
                 <div class="modal-body">
-                    <p>Gerai MCD melakukan percobaan awal waktu pelayanan
-                        <b id="waktu_kedatangan_modal"></b>
-                        Maka dari data yang telah dikumpulkan dapat disimpulkan sebagai berikut: 
+   <p> Terdapat <b id="total"></b> kali pelayanan yang terjadi <b>di Gerai MCD Solo Grand Mall</b>, Kemudian dari hasil pemodelan <b> LOGIKA FUZZY</b> dapat di simpulkan sebagai berikut :</p>
+
                     <ul>
-                        <li id="waktu_kedatangan_result"></li>
-                        <li id="SK"></li>
-                        <li id="SKA"></li>
-                        <li id="transaksi_min"></li>
-                        <li id="transaksi_max"></li>
+
+<li id='kesimpulan_waktu_tunggu'></li>
+                        <li id='kesimpulan_banyak_antrian'></li>
+                        <li>Berdasarkan simulasi yang dibuat maka dapat disimpulkan bahwa penambahan jumlah
+kasir dapat mengurangi lama waktu yang dibutuhkan untuk mengantri dan memaksimalkan
+jumlah konsumen yang dapat dilayani.</li>
                     </ul>
                     </p>
                 </div>
@@ -182,7 +186,11 @@
             </div>
         </div>
     </div>
-
+<footer class="text-center position-absolute top-100 start-50 translate-middle">
+  <p>Created By<a class="" href="https://instagram.com/arhndka.m__?igshid=ZGUzMzM3NWJiOQ==">Ariya Handika</a></p>
+  
+      
+</footer>
     <script>
         $(document).ready(function() {
             showAll();
@@ -197,7 +205,7 @@
             });
 
             $('#generate').click(function() {
-                $('#dynamic_modal_title_generate').text('Simpulan Simulasi Logika Fuzzy');
+                $('#dynamic_modal_title_generate').text('Simpulan antrian pelanggan MCD');
                 $('.text-danger').text('');
                 $('#generate_modal').modal('show');
 
@@ -206,22 +214,11 @@
                     contentType: "application/json",
                     url: "http://localhost/AntrianMCD/api/operasi/generate-by-avg.php",
                     success: function(response) {
-                        if (response && response.waktudatang !== undefined &&
-                            response.selisihkedatangan !== undefined &&
-                            response.selisihkeluarantrian !== undefined) {
-
                             // Update modal content based on fuzzy logic conclusion
-                            $('#id').val(response.id);
-                            $('#waktu_kedatangan_modal').text(response.waktudatang + response.max_waktudatang);
-                            $('#waktu_kedatangan_result').text('Rata-rata selisih kedatangan konsumen: ' + response.selisihkedatangan + " menit");
-                            $('#SK').text('Rata-rata pelayanan dimulai dengan waktu: ' + response.selisihpelayanankasir + " menit");
-                            $('#SKA').text('Rata-rata waktu konsumen selesai dilayani: ' + response.selisihkeluarantrian + " menit");
-                            $('#transaksi_min').text('Waktu tercepat transaksi diselesaikan: ' + response.selisihminkeluarantrian + " menit");
-                            $('#transaksi_max').text('Waktu terlama transaksi diselesaikan: ' + response.selisihmaxkeluarantrian + " menit");
-                        } else {
-                            console.error('Invalid or incomplete response:', response);
-                            // Handle the case where the response is not as expected
-                        }
+                           
+                            $('#kesimpulan_waktu_tunggu').text(response.kesimpulan_waktu_tunggu);
+                            $('#kesimpulan_banyak_antrian').text(response.kesimpulan_banyak_antrian);
+                      
                     },
                     error: function(err) {
                         console.error('An error occurred:', err);
@@ -238,12 +235,12 @@
 
                 if ($('#action').val() == "Add") {
                     var formData = {
-                        'waktudatang': $('#waktudatang').val(),
-                        'selisihkedatangan': $('#selisihkedatangan').val(),
+                        'w_datang': $('#w_datang').val(),
+                        's_kedatangan': $('#s_kedatangan').val(),
                         'awalpelayanan': $('#awalpelayanan').val(),
-                        'selisihpelayanankasir': $('#selisihpelayanankasir').val(),
+                        's_pelayanankasir': $('#s_pelayanankasir').val(),
                         'selesai': $('#selesai').val(),
-                        'selisihkeluarantrian': $('#selisihkeluarantrian').val(),
+                        's_keluarantrian': $('#s_keluarantrian').val(),
                     };
 
 
@@ -253,7 +250,7 @@
                         data: JSON.stringify(formData),
                         success: function(data) {
                             $('#action_button').attr('disabled', false);
-                            $('#message').html('<div class="alert alert-success">' + data.message + '</div>');
+                            $('#message').html('<div class="alert alert-success mt-3">' + data.message + '</div>');
                             $('#action_modal').modal('hide');
                             $('#sample_data').DataTable().destroy();
                             showAll();
@@ -262,23 +259,23 @@
                             console.log(err);
                         }
                     });
-                } else if ($('#action').val() == "Update") {
+                } else if($('#action').val() == "Update"){
                     var formData = {
                         'id': $('#id').val(),
-                        'waktudatang': $('#waktudatang').val(),
-                        'selisihkedatangan': $('#selisihkedatangan').val(),
+                        'w_datang': $('#w_datang').val(),
+                        's_kedatangan': $('#s_kedatangan').val(),
                         'awalpelayanan': $('#awalpelayanan').val(),
-                        'selisihpelayanankasir': $('#selisihpelayanankasir').val(),
-                        'selesai': $('#selesai').val(),
-                        'selisihkeluarantrian': $('#selisihkeluarantrian').val()
+                        's_pelayanankasir': $('#s_pelayanankasir').val(),
+                        'selesai': $('#selesai').val(), 
+                        's_keluarantrian': $('#s_keluarantrian').val()
                     }
                     $.ajax({
-                        url: "http://localhost/AntrianMCD/api/operasi/update.php",
-                        method: "PUT",
+                        url:"http://localhost/AntrianMCD/api/operasi/create.php",
+                        method:"PUT",
                         data: JSON.stringify(formData),
-                        success: function(data) {
+                        success:function(data){
                             $('#action_button').attr('disabled', false);
-                            $('#message').html('<div class="alert alert-success">' + data.message + '</div>');
+                            $('#message').html('<div class="alert alert-success">'+data.message+'</div>');
                             $('#action_modal').modal('hide');
                             $('#sample_data').DataTable().destroy();
                             showAll();
@@ -299,20 +296,20 @@
                 url: "http://localhost/AntrianMCD/api/operasi/read.php",
                 success: function(response) {
                     var json = response.body;
-
+                     $('#total').html(response.itemCount)
                     var dataSet = [];
                     for (var i = 0; i < json.length; i++) {
                         var sub_array = {
                           'no' : i+1,
-                            'waktudatang': json[i].waktudatang,
-                            'selisihkedatangan': json[i].selisihkedatangan,
+                            'w_datang': json[i].w_datang,
+                            's_kedatangan': json[i].s_kedatangan,
                             'awalpelayanan': json[i].awalpelayanan,
-                            'selisihpelayanankasir': json[i].selisihpelayanankasir,
+                            's_pelayanankasir': json[i].s_pelayanankasir,
                             'selesai': json[i].selesai,
-                            'selisihkeluarantrian': json[i].selisihkeluarantrian,
+                            's_keluarantrian': json[i].s_keluarantrian,
                             'action': '<div class="btn-group" role="group">' +
-                                '<button onclick="showOne(' + json[i].id + ')" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></button>' +
-                                '<button onclick="deleteOne(' + json[i].id + ')" class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>' +
+                                '<button onclick="showOne('+json[i].id+')" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></button>' +
+                                '<button onclick="deleteAntrian(' + json[i].id + ')" class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>' +
                                 '</div>'
 
                         };
@@ -324,26 +321,26 @@
                         columns: [
                                                   { data : "no" },
                           {
-                                data: "waktudatang"
+                                data: "w_datang"
                             },
                             {
-                                data: "selisihkedatangan"
+                                data: "s_kedatangan"
                             },
                             {
                                 data: "awalpelayanan"
                             },
                             {
-                                data: "selisihpelayanankasir"
+                                data: "s_pelayanankasir"
                             },
                             {
                                 data: "selesai"
                             },
                             {
-                                data: "selisihkeluarantrian"
+                                data: "s_keluarantrian"
                             },
                             {
                                 data: "action"
-                            } // Tambahkan kolom "action" di sini
+                            }
                         ]
                     });
                 },
@@ -355,29 +352,23 @@
 
         function showOne(id) {
             $('#dynamic_modal_title').text('Edit Data');
-
             $('#sample_form')[0].reset();
-
             $('#action').val('Update');
-
             $('#action_button').text('Update');
-
             $('.text-danger').text('');
-
             $('#action_modal').modal('show');
-
             $.ajax({
                 type: "GET",
                 contentType: "application/json",
-                url: "http://localhost/AntrianMCD/api/operasi/read.php?id=" + id,
+                url: "http://localhost/AntrianMCD/api/operasi/read.php?id="+id,
                 success: function(response) {
                     $('#id').val(response.id);
-                    $('#waktudatang').val(response.waktudatang);
-                    $('#selisihkedatangan').val(response.selisihkedatangan);
+                    $('#w_datang').val(response.w_datang);
+                    $('#s_kedatangan').val(response.s_kedatangan);
                     $('#awalpelayanan').val(response.awalpelayanan);
-                    $('#selisihpelayanankasir').val(response.selisihpelayanankasir);
+                    $('#s_pelayanankasir').val(response.s_pelayanankasir);
                     $('#selesai').val(response.selesai);
-                    $('#selisihkeluarantrian').val(response.selisihkeluarantrian);
+                    $('#s_keluarantrian').val(response.s_keluarantrian);
 
                 },
                 error: function(err) {
@@ -388,7 +379,7 @@
 
         }
 
-        function deleteOne(id) {
+        function deleteAntrian(id) {
             alert('Yakin untuk hapus data ?');
             $.ajax({
                 url: "http://localhost/AntrianMCD/api/operasi/delete.php",
@@ -408,7 +399,13 @@
                 }
             });
         }
+        
     </script>
+    <!-- js dari AOS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 
 </html>
