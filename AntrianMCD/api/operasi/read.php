@@ -10,7 +10,7 @@ include_once '../../models/Antrian.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$table_name = 't_antrian';
+$table_name = 'antrian';
 
 if (isset($_GET['id'])) {
     $item = new Antrian($db, $table_name);
@@ -19,15 +19,15 @@ if (isset($_GET['id'])) {
     try {
         $item->getAntrians();
 
-        if ($item->waktudatang != null) {
+        if ($item->w_datang != null) {
             $response = array(
                 "id" => $item->id,
-                "waktudatang" => $item->waktudatang,
-                "selisihkedatangan" => $item->selisihkedatangan,
+                "w_datang" => $item->w_datang,
+                "s_kedatangan" => $item->s_kedatangan,
                 "awalpelayanan" => $item->awalpelayanan,
-                "selisihpelayanankasir" => $item->selisihpelayanankasir,
+                "s_pelayanankasir" => $item->s_pelayanankasir,
                 "selesai" => $item->selesai,
-                "selisihkeluarantrian" => $item->selisihkeluarantrian,
+                "s_keluarantrian" => $item->s_keluarantrian,
             );
 
             http_response_code(200);
@@ -57,12 +57,12 @@ if (isset($_GET['id'])) {
                 extract($row);
                 $antrianItem = array(
                     "id" => $id,
-                    "waktudatang" => $waktudatang,
-                    "selisihkedatangan" => $selisihkedatangan,
+                    "w_datang" => $w_datang,
+                    "s_kedatangan" => $s_kedatangan,
                     "awalpelayanan" => $awalpelayanan,
-                    "selisihpelayanankasir" => $selisihpelayanankasir,
+                    "s_pelayanankasir" => $s_pelayanankasir,
                     "selesai" => $selesai,
-                    "selisihkeluarantrian" => $selisihkeluarantrian,
+                    "s_keluarantrian" => $s_keluarantrian,
                 );
                 array_push($AntrianArr["body"], $antrianItem);
             }
