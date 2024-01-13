@@ -7,12 +7,12 @@ class Antrian
     private $db_table = "antrian";
     // Columns
     public $id;
-    public $waktudatang;
-    public $selisihkedatangan;
+    public $w_datang;
+    public $s_kedatangan;
     public $awalpelayanan;
-    public $selisihpelayanankasir;
+    public $s_pelayanankasir;
     public $selesai;
-    public $selisihkeluarantrian;
+    public $s_keluarantrian;
 
     // Db connection
     public function __construct($db)
@@ -23,7 +23,7 @@ class Antrian
     // GET ALL
     public function getAntrians()
     {
-        $sqlQuery = "SELECT id, waktudatang, selisihkedatangan, awalpelayanan, selisihpelayanankasir, selesai, selisihkeluarantrian FROM " . $this->db_table;
+        $sqlQuery = "SELECT id, w_datang, s_kedatangan, awalpelayanan, s_pelayanankasir, selesai, s_keluarantrian FROM " . $this->db_table;
         $stmt = $this->conn->prepare($sqlQuery);
         $stmt->execute();
         return $stmt;
@@ -34,12 +34,12 @@ class Antrian
     {
         $sqlQuery = "INSERT INTO " . $this->db_table . "
             SET
-            waktudatang = :waktudatang,
-            selisihkedatangan = :selisihkedatangan,
+            w_datang = :w_datang,
+            s_kedatangan = :s_kedatangan,
             awalpelayanan = :awalpelayanan,
-            selisihpelayanankasir = :selisihpelayanankasir,
+            s_pelayanankasir = :s_pelayanankasir,
             selesai = :selesai,
-            selisihkeluarantrian = :selisihkeluarantrian";
+            s_keluarantrian = :s_keluarantrian";
 
         $stmt = $this->conn->prepare($sqlQuery);
 
@@ -47,12 +47,12 @@ class Antrian
         // (Tetapkan sanitize sesuai kebutuhan)
 
         // bind data
-        $stmt->bindParam(":waktudatang", $this->waktudatang);
-        $stmt->bindParam(":selisihkedatangan", $this->selisihkedatangan);
+        $stmt->bindParam(":w_datang", $this->w_datang);
+        $stmt->bindParam(":s_kedatangan", $this->s_kedatangan);
         $stmt->bindParam(":awalpelayanan", $this->awalpelayanan);
-        $stmt->bindParam(":selisihpelayanankasir", $this->selisihpelayanankasir);
+        $stmt->bindParam(":s_pelayanankasir", $this->s_pelayanankasir);
         $stmt->bindParam(":selesai", $this->selesai);
-        $stmt->bindParam(":selisihkeluarantrian", $this->selisihkeluarantrian);
+        $stmt->bindParam(":s_keluarantrian", $this->s_keluarantrian);
 
         if ($stmt->execute()) {
             return true;
@@ -60,39 +60,41 @@ class Antrian
         return false;
     }
 
-    // UPDATE
-    public function updateAntrian()
-    {
-        $sqlQuery = "UPDATE " . $this->db_table . "
-            SET
-            waktudatang = :waktudatang,
-            selisihkedatangan = :selisihkedatangan,
-            awalpelayanan = :awalpelayanan,
-            selisihpelayanankasir = :selisihpelayanankasir,
-            selesai = :selesai,
-            selisihkeluarantrian = :selisihkeluarantrian
-            WHERE
-            id = :id";
-
-        $stmt = $this->conn->prepare($sqlQuery);
-
-        // sanitize
-        // (Tetapkan sanitize sesuai kebutuhan)
-
-        // bind data
-        $stmt->bindParam(":waktudatang", $this->waktudatang);
-        $stmt->bindParam(":selisihkedatangan", $this->selisihkedatangan);
-        $stmt->bindParam(":awalpelayanan", $this->awalpelayanan);
-        $stmt->bindParam(":selisihpelayanankasir", $this->selisihpelayanankasir);
-        $stmt->bindParam(":selesai", $this->selesai);
-        $stmt->bindParam(":selisihkeluarantrian", $this->selisihkeluarantrian);
-        $stmt->bindParam(":id", $this->id);
-
-        if ($stmt->execute()) {
-            return true;
-        }
-        return false;
-    }
+// UPDATE
+    public function updateData(){
+        $sqlQuery = "UPDATE
+        ". $this->db_table ."
+        SET
+        w_datang = :w_datang, 
+        s_kedatangan = :s_kedatangan, 
+        awalpelayanan = :awalpelayanan, 
+        s_pelayanankasir = :s_pelayanankasir, 
+        selesai = :selesai,
+        s_keluarantrian = :s_keluarantrian
+        WHERE 
+        id = :id";
+          $stmt = $this->conn->prepare($sqlQuery);
+                  $this->w_datang=htmlspecialchars(strip_tags($this->w_datang));
+                  $this->s_kedatangan=htmlspecialchars(strip_tags($this->s_kedatangan));
+                  $this->awalpelayanan=htmlspecialchars(strip_tags($this->awalpelayanan));
+                 $this->s_pelayanankasir=htmlspecialchars(strip_tags($this->s_pelayanankasir));
+                  $this->selesai=htmlspecialchars(strip_tags($this->selesai));
+                  $this->s_keluarantrian=htmlspecialchars(strip_tags($this->s_keluarantrian));
+                  $this->id=htmlspecialchars(strip_tags($this->id));
+      // bind data
+          $stmt->bindParam(":w_datang", $this->w_datang);
+                  $stmt->bindParam(":s_kedatangan", $this->s_kedatangan);
+                  $stmt->bindParam(":awalpelayanan", $this->awalpelayanan);
+                  $stmt->bindParam(":s_pelayanankasir", $this->s_pelayanankasir);
+                  $stmt->bindParam(":selesai", $this->selesai);
+                  $this->s_keluarantrian=htmlspecialchars(strip_tags($this->s_keluarantrian));
+                  $stmt->bindParam(":id", $this->id);
+              
+                  if($stmt->execute()){
+                     return true;
+                  }
+                  return false;
+      }
 
     // DELETE
     public function deleteAntrian()
@@ -107,30 +109,24 @@ class Antrian
         }
         return false;
     }
-    public function generateByAVG()
+    public function generateKesimpulan()
     {
         $sqlQuery = "SELECT 
-    MIN(waktudatang) AS r_waktu_kedatangan,
-    MAX(waktudatang) AS r_max_waktu_kedatangan,
-    AVG(selisihkedatangan) AS r_selisihkedatangan, 
-    AVG(selisihpelayanankasir) AS r_selisihpelayanankasir, 
-    AVG(selisihkeluarantrian) AS r_selisihkeluarantrian,
-    MIN(selisihkeluarantrian) AS r_min_selisihkeluarantrian,
-    MAX(selisihkeluarantrian) AS r_max_selisihkeluarantrian
-    
+    MIN(s_kedatangan) AS min_sk,
+    MAX(s_kedatangan) AS max_sk,
+    AVG(s_kedatangan) AS avg_sk, 
+    MIN(s_pelayanankasir) AS min_spk, 
+    MAX(s_pelayanankasir) AS max_spk,
+    AVG(s_pelayanankasir) AS avg_spk
     FROM " . $this->db_table;
-
         $stmt = $this->conn->prepare($sqlQuery);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $dataRow = $stmt->fetch();
-
-        $this->waktudatang = $dataRow['r_waktu_kedatangan'];
-        $this->max_waktudatang = $dataRow['r_max_waktu_kedatangan'];
-        $this->selisihkedatangan = $dataRow['r_selisihkedatangan'];
-        $this->selisihpelayanankasir = $dataRow['r_selisihpelayanankasir'];
-        $this->selisihkeluarantrian = $dataRow['r_selisihkeluarantrian'];
-        $this->min_selisihkeluarantrian = $dataRow['r_min_selisihkeluarantrian'];
-        $this->max_selisihkeluarantrian = $dataRow['r_max_selisihkeluarantrian'];
+       $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->sk_min= $dataRow['min_sk'];
+        $this->sk_max= $dataRow['max_sk'];
+        $this->sk_avg = $dataRow['avg_sk'];
+        $this->spk_min = $dataRow['min_spk'];
+        $this->spk_max= $dataRow['max_spk'];
+        $this->spk_avg = $dataRow['avg_spk'];
     }
 }
