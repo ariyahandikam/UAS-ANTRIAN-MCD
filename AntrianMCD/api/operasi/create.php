@@ -12,12 +12,12 @@ $database = new Database();
 $db = $database->getConnection();
 $item = new Antrian($db);
 $data = json_decode(file_get_contents("php://input"));
-$item->waktudatang = $data->waktudatang;
-$item->selisihkedatangan = $data->selisihkedatangan;
+$item->w_datang = $data->w_datang;
+$item->s_kedatangan = $data->s_kedatangan;
 $item->awalpelayanan = $data->awalpelayanan;
-$item->selisihpelayanankasir = $data->selisihpelayanankasir;
+$item->s_pelayanankasir = $data->s_pelayanankasir;
 $item->selesai = $data->selesai;
-$item->selisihkeluarantrian = $data->selisihkeluarantrian;
+$item->s_keluarantrian = $data->s_keluarantrian;
 
 
 if ($item->createAntrian()) {
