@@ -17,9 +17,9 @@ $data = json_decode(file_get_contents("php://input"));
 $item->id = $data->id;
 
 // Try to delete Antrian
-if ($item->deleteAntrian()) {
-    echo json_encode(['message' => 'Antrian Dihapus.']);
-} else {
-    echo json_encode(['message' => 'Data could not be deleted.', 'error' => $db->errorInfo()]);
+if($item->deleteAntrian()){
+    echo json_encode("Data Berhasil dihapus.");
+} else{
+    echo json_encode("Data Gagal dihapus!");
 }
 ?>
