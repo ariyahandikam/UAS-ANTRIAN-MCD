@@ -24,3 +24,4 @@ if($item->updateData()){
     } else{
         echo json_encode(['message'=>'Data gagal diupdate!']);
 }
+?>
