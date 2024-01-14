@@ -130,3 +130,4 @@ class Antrian
         $this->spk_avg = $dataRow['avg_spk'];
     }
 }
+?>
