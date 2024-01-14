@@ -29,3 +29,4 @@ if ($item->sk_avg != null) {
     http_response_code(404);
     echo json_encode(array("message" => "User not found."));
 }
+?>
